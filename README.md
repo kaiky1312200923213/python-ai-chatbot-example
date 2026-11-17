@@ -1,43 +1,31 @@
-# Projetos-com-python
-criando IA com python e Projetos com python
-from openai import OpenAI
+# Projetos em Python — Chatbot com IA
 
-cliente = OpenAI(
-    api_key="",
-    base_url="https://integrate.api.nvidia.com/v1"
-)
+**Autor:** Kaiky Yoshio Ono Marins  
+**Categoria:** Python · Inteligência Artificial  
+**Status:** Experimento de estudo
 
-historico_conversa = [
-    {
-        "role": "system",
-        "content": "Voce e um divertido amigo, responda de forma carinhosa"
-    }
-]
+## Visão geral
 
-print("Sou seu amigo chatbot, digite 'sair' para encerrar nossa conversa")
+Exemplo de chatbot executado no terminal. O programa envia mensagens para um modelo de linguagem por meio de um endpoint compatível com a API da OpenAI e mantém o histórico da conversa em memória enquanto o processo está aberto.
 
-while True:
-    pergunta_usuario = input("Voce: ")
-    if pergunta_usuario.lower() == "sair":
-        print("Ate mais!")
-        break
+## O que o exemplo demonstra
 
-    historico_conversa.append({
-        "role": "user",
-        "content": pergunta_usuario
-    })
+- Entrada e saída de mensagens pelo terminal.
+- Construção de uma conversa com papéis `system`, `user` e `assistant`.
+- Envio do histórico para o modelo a cada interação.
+- Encerramento da conversa por comando.
 
-    resposta_ai = cliente.chat.completions.create(
-        model="meta/llama-3.1-8b-instruct",
-        messages=historico_conversa
-    )
+## Tecnologias
 
-    conteudo_resposta = resposta_ai.choices[0].message.content
+- Python
+- SDK `openai`
+- Endpoint compatível da NVIDIA NIM
+- Modelo de linguagem Llama
 
-    print(f"Amigo chatbot: {conteudo_resposta}")
+## Material e execução
 
-    historico_conversa.append({
-        "role": "assistant",
-        "content": conteudo_resposta
-    })
-        
+O exemplo original está preservado em [MATERIAL-ORIGINAL.txt](./MATERIAL-ORIGINAL.txt). Antes de executar, instale a dependência `openai` e configure sua chave de API de forma segura no ambiente local. O trecho arquivado usa uma chave vazia como marcador e precisa dessa configuração para funcionar.
+
+**Segurança:** nunca grave chaves de API no código, no README ou em commits.
+
+© 2026 Kaiky Yoshio Ono Marins.
